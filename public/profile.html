@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profile · FitZone Gym Booking</title>
+<link rel="stylesheet" href="/css/styles.css">
+<script src="/js/app.js" defer></script>
+</head>
+<body data-page="profile">
+<header class="nav" id="nav"></header>
+<main class="wrap">
+  <h1 id="hello">Your profile</h1>
+  <span id="status" class="badge ok"></span>
+  <div class="card" style="margin-top:20px">
+    <h2>Your details</h2>
+    <form id="form">
+      <label for="full_name">Full name</label>
+      <input id="full_name" type="text" required minlength="2" maxlength="100">
+      <label for="email">Email (cannot be changed)</label>
+      <input id="email" type="email" disabled>
+      <label for="phone">Phone</label>
+      <input id="phone" type="tel" maxlength="20" placeholder="+7 700 000 00 00">
+      <label for="plan_id">Membership plan</label>
+      <select id="plan_id"></select>
+      <button class="btn" type="submit" style="margin-top:22px">Save changes</button>
+      <div id="msg" class="msg"></div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>Change password</h2>
+    <form id="pw-form">
+      <label for="current_password">Current password</label>
+      <input id="current_password" type="password" required autocomplete="current-password">
+      <label for="new_password">New password</label>
+      <input id="new_password" type="password" required minlength="8" maxlength="72" autocomplete="new-password">
+      <p class="hint">At least 8 characters, with a letter and a digit.</p>
+      <button class="btn secondary" type="submit" style="margin-top:12px">Change password</button>
+      <div id="pw-msg" class="msg"></div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>My bookings</h2>
+    <table>
+      <thead><tr><th>Class</th><th>When</th><th>Trainer</th><th>Status</th><th></th></tr></thead>
+      <tbody id="bookings"></tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>

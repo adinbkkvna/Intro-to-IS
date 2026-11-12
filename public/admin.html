@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manager report · FitZone Gym Booking</title>
+<link rel="stylesheet" href="/css/styles.css">
+<script src="/js/app.js" defer></script>
+</head>
+<body data-page="admin">
+<header class="nav" id="nav"></header>
+<main class="wrap" id="report">
+  <h1>Manager report</h1>
+  <p class="muted">Finished sessions in the last 14 days. Target fill rate 70%. Demo data.</p>
+  <div class="kpis" id="kpis"></div>
+  <div class="card" style="margin-top:20px">
+    <h2>Fill rate by time slot</h2>
+    <div class="bars" id="bars"></div>
+  </div>
+  <div class="card">
+    <h2>Sessions that need a decision</h2>
+    <table>
+      <thead><tr><th>Session</th><th>Fill</th><th>No-show</th><th>Flag</th></tr></thead>
+      <tbody id="actions"></tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>

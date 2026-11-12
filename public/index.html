@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log in · FitZone Gym Booking</title>
+<link rel="stylesheet" href="/css/styles.css">
+<script src="/js/app.js" defer></script>
+</head>
+<body data-page="login">
+<header class="nav" id="nav"></header>
+<main class="wrap">
+  <div class="entry">
+    <div>
+      <h1>Train more. <em>Wait less.</em></h1>
+      <p class="lead">FitZone lets you see free places live, book or cancel in one click, and keep your history in one place.</p>
+      <ul class="points">
+        <li>Strength, Cardio, HIIT, Pilates and Yoga</li>
+        <li>Evening classes at 18:00 and 20:00</li>
+        <li>Trainer profiles before you book</li>
+        <li>Free cancelling up to 2 hours before</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Log in</h2>
+      <p class="muted">Welcome back. Log in to book your next class.</p>
+      <form id="form">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required autocomplete="email">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required autocomplete="current-password">
+        <button class="btn form-btn" type="submit">Log in</button>
+        <div id="msg" class="msg"></div>
+      </form>
+      <p class="hint">New here? <a href="/register.html">Create an account</a></p>
+    </div>
+  </div>
+</main>
+</body>
+</html>
