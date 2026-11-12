@@ -1,6 +1,3 @@
-// Fills the database with DEMO data: plans, classes, trainers, rooms, sessions (2 weeks back, 2 weeks ahead),
-// demo members and past bookings. Run after db:setup:  npm run db:seed
-// Demo logins:  admin@gym.local / Admin12345   and   member@gym.local / Member12345
 const db = require('../src/db');
 const { hashPassword } = require('../src/security');
 

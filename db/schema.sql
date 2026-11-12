@@ -1,9 +1,3 @@
--- ============================================================
--- Gym Booking System: database schema for the website
--- Owner: Tomiris (Student 2). PostgreSQL.
--- Run with:  npm run db:setup   (or paste into pgAdmin Query Tool)
--- It is the Task 9 database + login columns on members + views.
--- ============================================================
 
 DROP VIEW  IF EXISTS v_session_fill CASCADE;
 DROP TABLE IF EXISTS bookings CASCADE;
@@ -22,7 +16,6 @@ CREATE TABLE membership_plans (
     duration_days  INT          NOT NULL CHECK (duration_days > 0)
 );
 
--- members = the users of the website (login columns added for Week 11)
 CREATE TABLE members (
     member_id      SERIAL PRIMARY KEY,
     full_name      VARCHAR(100) NOT NULL,
@@ -85,13 +78,10 @@ CREATE TABLE bookings (
     booked_at   TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
--- The Task 9 fix (Option B): one ACTIVE booking per member per session.
--- Cancelled rows stay as history, so a member can cancel and book again.
 CREATE UNIQUE INDEX uq_active_booking
 ON bookings (member_id, session_id)
 WHERE status <> 'cancelled';
 
--- ---------- Rule 1: no overbooking ----------
 CREATE OR REPLACE FUNCTION fn_no_overbooking() RETURNS trigger AS $$
 DECLARE taken INT; cap INT;
 BEGIN
@@ -109,7 +99,6 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER no_overbooking BEFORE INSERT ON bookings
 FOR EACH ROW EXECUTE FUNCTION fn_no_overbooking();
 
--- ---------- Rule 2: only active members can book ----------
 CREATE OR REPLACE FUNCTION fn_active_member_only() RETURNS trigger AS $$
 DECLARE m_status VARCHAR(10);
 BEGIN
@@ -124,7 +113,6 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER active_member_only BEFORE INSERT ON bookings
 FOR EACH ROW EXECUTE FUNCTION fn_active_member_only();
 
--- ---------- Rule 3: no room or trainer clash ----------
 CREATE OR REPLACE FUNCTION fn_no_session_overlap() RETURNS trigger AS $$
 BEGIN
     IF EXISTS (
@@ -143,8 +131,6 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER no_session_overlap BEFORE INSERT OR UPDATE ON sessions
 FOR EACH ROW EXECUTE FUNCTION fn_no_session_overlap();
 
--- ---------- Report view (SIS 9): fill rate and no-show per session ----------
--- active booking = status is not 'cancelled'; no-show = status 'no_show'
 CREATE VIEW v_session_fill AS
 SELECT
   s.session_id,
